@@ -4,3 +4,5 @@ file_path_2: "../data/ConocoPhillips Proxy Statement 2024.pdf"
 images_folder_path: "../data/images/"
 chromadb_path: "../database/"
 
+localhost: "http://localhost:8000/survey"
+
