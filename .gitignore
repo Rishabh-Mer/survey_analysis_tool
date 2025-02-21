@@ -1,0 +1,6 @@
+.env
+.DS_Store
+.ipynb_checkpoints/*.ipynb
+__pycache__/*.pyc
+__pycache__/*.pyo
+data/*.jpg
