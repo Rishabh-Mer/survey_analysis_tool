@@ -13,6 +13,7 @@ from langchain_openai import ChatOpenAI
 
 from loguru import logger
 from dotenv import load_dotenv
+import uvicorn
 
 load_dotenv()
 
@@ -104,3 +105,5 @@ def root(input:Survey):
     return {"answer": response}  
     
     
+if __name__ == "__main__":
+    uvicorn.run("server:app", host="0.0.0.0", port=8000, reload=True)
