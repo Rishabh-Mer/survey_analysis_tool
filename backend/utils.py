@@ -2,7 +2,6 @@ import base64
 import yaml
 
 from glob import glob
-from IPython.display import Image, display
 
 def get_all_files(file:str, extension:str) -> list:
     """
@@ -15,19 +14,6 @@ def get_all_files(file:str, extension:str) -> list:
     """
 
     return glob(file + '*.' + extension, recursive=True)
-
-
-def display_images(encoded_image:str):
-    
-    """
-    Display images in the notebook
-    
-    encoded_image: 
-        str: encoded image
-    """
-    
-    display(Image(data=base64.b64decode(encoded_image)))
-    
 
 def read_yaml(file:str) -> dict:
     """
