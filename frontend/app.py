@@ -1,12 +1,9 @@
 import streamlit as st
-import json
 import sys
 import requests
 import time
 
 from loguru import logger
-from utils import read_yaml
-sys.path.insert(0, '../backend')
 
 
 st.set_page_config(
@@ -14,7 +11,6 @@ st.set_page_config(
     page_icon="📊",
 )
 
-yaml_file = read_yaml("../data/data.yaml")
 
 st.write('# Survey Analysis Tool')  
 
@@ -34,7 +30,7 @@ if query := st.chat_input("Enter your query here"):
     st.session_state.messages.append({"role": "user", "content": query})
     
     # Send query to backend
-    response = requests.post(yaml_file['localhost'], json={"query": query})
+    response = requests.post("http://localhost:8000/survey", json={"query": query})
     response = response.json()
     
     # add emoji in spinner
