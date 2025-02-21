@@ -1,0 +1,6 @@
+file_path_1: "../data/ConocoPhillips AIM Presentation 2023.pdf"
+file_path_2: "../data/ConocoPhillips Proxy Statement 2024.pdf"
+
+images_folder_path: "../data/images/"
+chromadb_path: "../database/"
+
