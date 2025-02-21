@@ -12,7 +12,6 @@ from langchain_chroma import Chroma
 from langchain_openai import ChatOpenAI
 
 from loguru import logger
-from utils import read_yaml
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -78,9 +77,7 @@ app = FastAPI()
 def root(input:Survey):
     
     logger.info(f"Received query: {input.query}")
-    
-    yaml = read_yaml("../data/data.yaml")
-    chromadb_path = yaml["chromadb_path"]
+    chromadb_path = '../database/'
 
     logger.warning(f"ChromaDB Path: {chromadb_path}")
     
