@@ -33,10 +33,7 @@ def pdf_partitions(file_path:str) -> list:
             filename=file_path,
             infer_table_structure=True,
             strategy="hi_res",
-            extract_image_block_types=["Image", "Table"],
-            extract_image_block_output_dir=image_folder,
             extract_image_block_to_payload=False,
-            
             chunking_strategy="by_title",
             max_characters=15000,
             combine_text_under_n_chars=5000,
@@ -52,8 +49,6 @@ def pdf_partitions(file_path:str) -> list:
             filename=file_path,
             infer_table_structure=True,
             strategy="hi_res",
-            extract_image_block_types=["Image", "Table"],
-            extract_image_block_output_dir=image_folder,
             extract_image_block_to_payload=False,
             chunking_strategy="by_title"
         )
@@ -78,14 +73,27 @@ def extract_elements(elements: List) -> list[list, list]:
     
     texts, tables = [], []
     
-    for element in elements:
-        if "CompositeElement" in str(type(element)):
-            texts.append(element) 
-            
-        if "Table" in str(type(element)):
-            tables.append(element)
-            
+    for composite in elements:
+        new_inner_elements = []
     
+        # Iterate through the inner elements of the CompositeElement
+        for inner_element in composite.metadata.orig_elements:
+            
+            if "Table" in str(type(inner_element)):
+                # Append table elements to the separate list
+                tables.append(inner_element)
+            elif "Image" in str(type(inner_element)):
+                # Skip image elements (they are removed)
+                continue
+            else:
+                # Keep other elements
+                new_inner_elements.append(inner_element)
+
+        # Remaining elements 
+        if new_inner_elements:
+            composite.elements = new_inner_elements
+            texts.append(composite)
+        
     return texts, tables
 
 
@@ -104,7 +112,7 @@ def images_to_base64(image_folder_path:str) -> List[str]:
     
     images = []
     
-    list_images = get_all_files(image_folder_path, "jpg")
+    list_images = get_all_files(image_folder_path, "png")
     
     count = 0
     
