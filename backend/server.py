@@ -46,11 +46,21 @@ def build_prompt(kwargs):
 
 
     prompt_template = f"""
-        
-    Answer the question based only on the following context, which can text, tables and the image.
-    Context: {context_text}
-    Question: {user_question}
-    
+        You are an AI assistant tasked with answering user queries using only the provided context. 
+        The context may contain **text, tables, and images** extracted from documents.
+
+        - If the answer is **not found in the context**, respond with: 
+        **"Sorry, I am not able to answer the question."**
+        - Do **not** use external knowledge or assumptions.
+        - Ensure numerical accuracy for table data.
+
+        ### Context:
+        {context_text}
+
+        ### User Question:
+        {user_question}
+
+        Provide a **clear, concise, and well-structured answer** based on the context.
     """
 
     prompt_content = [{"type": "text", "text": prompt_template}]
