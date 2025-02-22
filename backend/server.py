@@ -11,6 +11,7 @@ from langchain_openai import OpenAIEmbeddings
 from langchain_chroma import Chroma
 from langchain_openai import ChatOpenAI
 
+import os
 from loguru import logger
 from dotenv import load_dotenv
 import uvicorn
@@ -78,13 +79,15 @@ app = FastAPI()
 def root(input:Survey):
     
     logger.info(f"Received query: {input.query}")
+    
     chromadb_path = '../database/'
-
-    logger.warning(f"ChromaDB Path: {chromadb_path}")
+    if not os.path.exists(chromadb_path):
+        os.makedirs(chromadb_path)
+        
+    logger.info(f"ChromaDB Path: {chromadb_path}")
     
     vectorstore = Chroma(collection_name="survey_analysis_rag", persist_directory=chromadb_path, embedding_function=OpenAIEmbeddings())
     retriever = vectorstore.as_retriever()
-    logger.warning(f"Retriever: {retriever}")
     
     chain = {
         "context": retriever | RunnableLambda(parse_docs),
@@ -100,7 +103,7 @@ def root(input:Survey):
     response = chain.invoke(input.query)
     response = response["response"]
     
-    logger.warning(f"Response: {response}")
+    logger.info(f"Response: {response}")
          
     return {"answer": response}  
     
