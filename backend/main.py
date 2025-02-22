@@ -22,16 +22,19 @@ load_dotenv()
 
 def get_text_table_summarization_prompt():
     
-    return """
+    return """ 
     You are an assistant tasked with summarizing tables and text.
-    Give a concise summary of the table or text.
+    Give a brief summary of the table or text.
 
     Respond only with the summary, no additional comment.
     Do not start your sentence by saying "Here is a summary" or anything like that.
     Just give the summary as it is.
 
-    Table or text chunk: {element}
-    """
+    for context the content is from 2 documents which is proxy statement of year 2024 and AIM (Analyst and investor meeting)of year 2023 
+    of ConocoPhillips which is one of the world’s largest independent E&P companies 
+    based on production and proved reserves.
+
+    Table or text chunk: {element}"""
     
 def create_summarization_chain(model_name="llama3.2:1b"):
     """
@@ -44,11 +47,23 @@ def create_summarization_chain(model_name="llama3.2:1b"):
 
 def get_image_prompt():
     return """
+
     Describe the image in detail. For context,
-    the image is part of two documents The ConocoPhillips 2024 Proxy Statement and 
-    2023 Analyst & Investor Meeting Presentation outline the company's strategy, portfolio, financial plan, and sustainability goals. Key topics include board elections, executive compensation, financial performance, and stockholder engagement. 
+    the image is part of two documents The ConocoPhillips 2024 Proxy Statement and 2023 Analyst & Investor Meeting Presentation outline the company's strategy, portfolio, financial plan, and sustainability goals. 
+    Key topics include board elections, executive compensation, financial performance, and stockholder engagement. 
     The company emphasizes a disciplined, returns-focused strategy, strong financial discipline, and progress on its net-zero energy transition plan. It also highlights operational milestones, LNG expansion, and emissions reduction targets, reinforcing its commitment to long-term value creation for stockholders.
-    Be specific about graphs, such as bar plots. Mention any text or numbers in the image."""
+
+    ### Instructions:
+    - Provide a **detailed description** of the image.
+    - If the image contains **graphs (e.g., bar charts, line graphs, pie charts)**, describe:
+    - The **type of chart** (bar, line, scatter, etc.).
+    - **Key trends, labels, and numerical values** visible.
+    - **Comparisons or significant insights** from the data.
+    - If the image contains **tables or figures**, summarize their key takeaways.
+
+    Focus on **clarity, accuracy, and relevance** while ensuring a structured and comprehensive response.
+
+    """
 
 def create_image_summarization_chain():
     prompt_template_image = get_image_prompt()
