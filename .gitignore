@@ -2,5 +2,5 @@
 .DS_Store
 .ipynb_checkpoints/*.ipynb
 **/__pycache__/
-data/*.jpg
 database/
+notebooks/.ipynb_checkpoints/
