@@ -26,7 +26,7 @@ for message in st.session_state.messages:
         st.write(message["content"])
 
 if query := st.chat_input("Enter your query here"):
-    st.chat_message("user", avatar="🧍🏻").markdown(query)
+    st.chat_message("user").markdown(query)
     st.session_state.messages.append({"role": "user", "content": query})
     
     # Send query to backend
@@ -36,7 +36,7 @@ if query := st.chat_input("Enter your query here"):
     # add emoji in spinner
     with st.spinner(""):
         time.sleep(2)    
-        st.chat_message("ai", avatar="🤖").markdown(response['answer'])
+        st.chat_message("ai").markdown(response['answer'])
         st.session_state.messages.append({"role": "assistant", "content": response['answer']})
         
     
