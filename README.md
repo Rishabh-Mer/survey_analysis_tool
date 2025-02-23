@@ -62,6 +62,29 @@ Once installed, run the LLaMA model:
 
 ---
 
+### Running the Application Locally
+* Start the Backend
+    * Navigate to the backend folder:
+        ```sh
+        cd backend
+        python3 main.py 
+        ```
+    * After successfully saved the summarization in vector database, run ```FastAPI```
+        ```
+        python3 server.py
+        ```
+* Start the Frontend
+    * Open **another terminal**, navigate to the frontend directory, and run:
+        ```sh
+        cd frontend
+        streamlit run app.py
+        ```
+* Access the Application
+After starting the frontend, open the Streamlit link displayed in the terminal in your web browser 
+(http://localhost:8501).
+
+---
+
 ### 💡 Additional Notes
 * Ensure that ollama is running before starting the backend.
 * The vector database (ChromaDB) is stored in the database/ directory.
