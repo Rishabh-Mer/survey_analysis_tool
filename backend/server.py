@@ -48,6 +48,9 @@ def build_prompt(kwargs):
     prompt_template = f"""
         You are an AI assistant tasked with answering user queries using only the provided context. 
         The context may contain **text, tables, and images** extracted from documents.
+        
+        If user greeing is found in the query, respond with:
+        **"Hello! How can I help you today?"** or **"Hi! How can I assist you today?"**
 
         - If the answer is **not found in the context**, respond with: 
         **"Sorry, I am not able to answer the question."**
