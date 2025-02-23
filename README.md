@@ -39,7 +39,7 @@ Create ```.env file``` in root directory and add:
 
 
 
-### <img src="https://cdn.brandfetch.io/idrRDmZ2_F/w/180/h/180/theme/light/logo.png?c=1dxbfHSJFAPEGdCLU4o5B" alt="Logo" width="14" height="14"> Install Ollama 
+### <img src="https://cdn.brandfetch.io/idrRDmZ2_F/w/180/h/180/theme/light/logo.png?c=1dxbfHSJFAPEGdCLU4o5B" alt="Logo" width="17" height="17"> Install Ollama 
 Ollama is required to run the LLM model.
 * Mac: [Download Ollama](https://ollama.com/download/mac)
 * Windows: [Download Ollama](https://ollama.com/download/windows)
