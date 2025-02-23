@@ -7,14 +7,17 @@ from loguru import logger
 
 
 st.set_page_config(
-    page_title="Survey Analysis Tool",
+    page_title="Survey Analysis Agent",
     page_icon="📊",
 )
 
-
-st.write('# Survey Analysis Tool')  
-
-st.markdown("Hello, this survey analysis tool.")
+st.markdown(
+    """
+    <h1 style='text-align: center;'>Survey Analysis Agent</h1>
+    <p style='text-align: center;'>This agent will provide answers based on documents from ConocoPhillips, the AIM Presentation 2023 and the Proxy Statement 2024.</p>
+    """,
+    unsafe_allow_html=True
+)
 
 # Initialize chat history
 if "messages" not in st.session_state:
