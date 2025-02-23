@@ -79,11 +79,16 @@ def create_image_summarization_chain():
 
 # Function to process tables and text summaries in batches
 def process_text_and_tables(texts, tables):
+    logger.info("Starting Text and Table Summarization")
     summarize_chain = create_summarization_chain()
+    logger.info("Summarization Chain Created")
     tables_html = [table.metadata.text_as_html for table in tables]
+    logger.info(f"Tables HTML Extracted: {tables_html}")
     
     text_summaries = summarize_chain.batch(texts, {"max_concurrency": 3})
+    logger.info("Text Summarization Completed")
     table_summaries = summarize_chain.batch(tables_html, {"max_concurrency": 3})
+    logger.info("Table Summarization Completed")
     
     logger.success("Text and Table Summarization Completed")
 
@@ -91,6 +96,7 @@ def process_text_and_tables(texts, tables):
 
 # Function to process images in batches
 def process_images(images):
+    logger.info("Starting Image Summarization")
     image_summarize_chain = create_image_summarization_chain()
     image_summaries = image_summarize_chain.batch(images)
 
@@ -103,8 +109,9 @@ def store_summaries_in_vectorstore(texts, tables, images):
     
     database_path = "../database/"
     if not os.path.exists(database_path):
+        logger.info(f"Creating Database folder: {database_path}")
         os.makedirs(database_path)
-    
+        
     vectorstore = Chroma(collection_name="survey_analysis_rag", embedding_function=OpenAIEmbeddings(), persist_directory=database_path)
     store = InMemoryStore()
     id_key = "doc_id"
@@ -122,6 +129,8 @@ def store_summaries_in_vectorstore(texts, tables, images):
     ]
     retriever.vectorstore.add_documents(summary_texts)
     retriever.docstore.mset(list(zip(doc_ids, texts)))
+    
+    logger.success("Texts stored in Vector Store")
 
     # Tables
     table_ids = [str(uuid.uuid4()) for _ in tables]
@@ -130,6 +139,8 @@ def store_summaries_in_vectorstore(texts, tables, images):
     ]
     retriever.vectorstore.add_documents(summary_tables)
     retriever.docstore.mset(list(zip(table_ids, tables)))
+    
+    logger.success("Tables stored in Vector Store")
 
     # Images
     img_ids = [str(uuid.uuid4()) for _ in images]
@@ -138,7 +149,8 @@ def store_summaries_in_vectorstore(texts, tables, images):
     ]
     retriever.vectorstore.add_documents(summary_img)
     retriever.docstore.mset(list(zip(img_ids, images)))
-        
+    
+    logger.success("Images stored in Vector Store")
     logger.success("Summaries and Documents stored in Vector Store")
 
 
