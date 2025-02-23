@@ -29,6 +29,7 @@ python3 -m venv venv
 source venv/bin/activate  # For macOS/Linux
 venv\Scripts\activate  # For Windows 
 ```
+---
 
 ### Install Dependencies
 ```pip install -r requirements.txt```
@@ -36,8 +37,7 @@ venv\Scripts\activate  # For Windows
 Create ```.env file``` in root directory and add:
 - ```OPENAI_API_KEY: OPENAI_KEY``` 
 
-
-
+---
 
 ### <img src="https://cdn.brandfetch.io/idrRDmZ2_F/w/180/h/180/theme/light/logo.png?c=1dxbfHSJFAPEGdCLU4o5B" alt="Logo" width="17" height="17"> Install Ollama 
 Ollama is required to run the LLM model.
@@ -46,6 +46,8 @@ Ollama is required to run the LLM model.
 
 Once installed, run the LLaMA model:
 ```ollama run llama3.2:1b```
+
+---
 
 ### Install Poppler and Tesseract (For PDF & Image Processing)
 * MacOS:
@@ -58,9 +60,13 @@ Once installed, run the LLaMA model:
 
     *After installation, ensure they are added to the system PATH.*
 
+---
+
 ### 💡 Additional Notes
 * Ensure that ollama is running before starting the backend.
 * The vector database (ChromaDB) is stored in the database/ directory.
 * Ensure to create ```.env```
 * If you encounter issues with dependencies, verify your Python version and package installations.
 
+---
+*Enjoy using the Survey Analysis LLM RAG Agent!*
