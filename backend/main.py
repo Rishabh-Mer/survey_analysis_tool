@@ -100,7 +100,12 @@ def process_images(images):
 
 # Function to store data in vector store
 def store_summaries_in_vectorstore(texts, tables, images):
-    vectorstore = Chroma(collection_name="survey_analysis_rag", embedding_function=OpenAIEmbeddings(), persist_directory="../database/")
+    
+    database_path = "../database/"
+    if not os.path.exists(database_path):
+        os.makedirs(database_path)
+    
+    vectorstore = Chroma(collection_name="survey_analysis_rag", embedding_function=OpenAIEmbeddings(), persist_directory=database_path)
     store = InMemoryStore()
     id_key = "doc_id"
 
