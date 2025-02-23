@@ -22,7 +22,7 @@ This project is a Retrieval-Augmented Generation (RAG) agent designed for analyz
 ## 📌 Installation Guide
 
 ### Set Up Python Environment
-Ensure you have Python 3.12 installed. You can create a virtual environment as follows:
+Ensure you have ```Python 3.12``` installed. You can create a virtual environment as follows:
 
 ```sh
 python3 -m venv venv
