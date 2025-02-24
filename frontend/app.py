@@ -36,7 +36,6 @@ if query := st.chat_input("Enter your query here"):
     response = requests.post("http://localhost:8000/survey", json={"query": query})
     response = response.json()
     
-    # add emoji in spinner
     with st.spinner(""):
         time.sleep(2)    
         st.chat_message("ai").markdown(response['answer'])
