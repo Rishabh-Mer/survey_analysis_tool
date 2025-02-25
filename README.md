@@ -2,7 +2,7 @@
 
 This project is a Retrieval-Augmented Generation (RAG) agent designed for analyzing surveys using a Language Model (LLM). It includes a backend for processing data with FastAPI, a frontend using Streamlit for user interaction, and a vector database (ChromaDB) for efficient information retrieval.
 
-To testing the agent I have hosted the application on ```AWS``` 
+To test the agent I have hosted the application on ```AWS``` 
 Link: [Survey-Analysis-Agent](http://23.22.244.217:8501/)
 
 ---
@@ -21,6 +21,9 @@ Link: [Survey-Analysis-Agent](http://23.22.244.217:8501/)
     - **`notebooks/`** - Jupyter notebooks for development
     **`requirements.txt`** - List of required Python packages.
     - **`README.md`** - Documentation for the project.
+
+## RAG Approach
+![RAG Approach](https://github.com/Rishabh-Mer/survey_analysis_tool/blob/main/RAG_Approach.png)
 
 ## 📌 Installation Guide
 
